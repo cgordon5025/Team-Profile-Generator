@@ -4,7 +4,8 @@ const empChoices = [
     {
         type: 'list',
         message: "Which type of emplyee would you like to enter information about?",
-        choices: ["Engineer", "Intern", "No more employees to enter"]
+        choices: ["Engineer", "Intern", "No more employees to enter"],
+        name: 'empOption'
     }
 ]
 const managerQuest = [
@@ -73,7 +74,34 @@ const internQuest = [
         name: "intern_github"
     }
 ]
-inquirer
-    .prompt(managerQuest)
-    .then(prompt(empChoices))
-    //need an if statement based upon the options
+async function init() {
+    var managerInfo = await inquirer.prompt(managerQuest)
+        .then(otherOpt)
+    console.log(managerInfo)
+}
+
+
+async function otherOpt() {
+
+    var myEmp = await inquirer.prompt(empChoices)
+    console.log(myEmp.empOption)
+    if (myEmp.empOption == 'Engineer') {
+        var engineerInfo = await inquirer.prompt(engineerQuest)
+        otherOpt()
+    } else if (myEmp.empOption == 'Intern') {
+        var internInfo = await inquirer.prompt(internQuest)
+        otherOpt()
+    } else {
+        return engineerInfo, internInfo
+    }
+    console.log(engineerInfo, internInfo)
+
+}
+
+// async function init() {
+//     var myEmp = await inquirer.prompt(empChoices)
+//     console.log(myEmp)
+// }
+
+init()
+// otherOpt()
