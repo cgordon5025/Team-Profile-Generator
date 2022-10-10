@@ -1,3 +1,6 @@
+//html and css generator
+const makeHTML = require('./src/generateHTML')
+const makeCSS = require('./src/generateCSS')
 //profile classes
 const Manager = require('./lib/manager')
 const Engineer = require('./lib/engineer')
@@ -96,7 +99,6 @@ async function init() {
 
 }
 
-
 async function otherOpt() {
 
     var myEmp = await inquirer.prompt(empChoices)
@@ -122,15 +124,10 @@ async function otherOpt() {
             })
         otherOpt()
     } else {
+        //go on to make the sheets and test?
         return
     }
 
 }
 
-// async function init() {
-//     var myEmp = await inquirer.prompt(empChoices)
-//     console.log(myEmp)
-// }
-
 init()
-// otherOpt()
