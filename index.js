@@ -86,6 +86,10 @@ const internQuest = [
         name: "school"
     }
 ]
+function writeToFile(fileName, data) {
+    fs.appendFile(fileName, data, (err) =>
+        err ? console.error(err) : console.log('Commit logged!'))
+}
 async function init() {
     await inquirer.prompt(managerQuest)
         .then(managerInput => {
@@ -96,6 +100,16 @@ async function init() {
             console.log(myArray)
         })
     await otherOpt()
+    await console.log(myArray)
+    // await writeToFile("sampleStyle.css", `.main {
+    //     margin: 10px;
+    //     box-shadow: 10px 5px 5px black;
+    // }`), (err) =>
+    //         err ? console.error(err) : console.log('CSS Created!')
+    // await writeToFile("sample.html", makeHTML(myArray)), (err) =>
+    //     err ? console.error(err) : console.log('HTML Created!')
+
+
 
 }
 
@@ -131,3 +145,6 @@ async function otherOpt() {
 }
 
 init()
+
+//i've got the object manager/engineer/intern with their name/id/email etc in it
+//now how can i iterate for that
