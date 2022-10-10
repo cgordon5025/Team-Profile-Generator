@@ -1,5 +1,14 @@
+//profile classes
+const Manager = require('./lib/manager')
+const Engineer = require('./lib/engineer')
+const Intern = require('./lib/intern')
+
+//loading in necessary packages
 const inquirer = require('inquirer')
 const fs = require('fs');
+
+//empty array for profiles
+var myArray = []
 const empChoices = [
     {
         type: 'list',
@@ -12,72 +21,79 @@ const managerQuest = [
     {
         type: 'input',
         message: "What is the manager's name?",
-        name: 'manager_name'
+        name: 'name'
     },
     {
         type: 'input',
         messgae: "What is the manager's employee ID?",
-        name: 'manager_ID'
+        name: 'id'
     },
     {
         type: 'input',
         message: "What is the manager's email address?",
-        name: 'manager_email'
+        name: 'email'
     },
     {
         type: 'input',
         message: "What is the manager's office number?",
-        name: "manager_office"
+        name: "officeNum"
     }
 ]
 const engineerQuest = [
     {
         type: 'input',
         message: "What is the engineer's name?",
-        name: 'engineer_name'
+        name: 'name'
     },
     {
         type: 'input',
         messgae: "What is the engineer's employee ID?",
-        name: 'engineer_ID'
+        name: 'id'
     },
     {
         type: 'input',
         message: "What is the engineer's email address?",
-        name: 'engineer_email'
+        name: 'email'
     },
     {
         type: 'input',
         message: "What is the engineer's github?",
-        name: "engineer_github"
+        name: "github"
     }
 ]
 const internQuest = [
     {
         type: 'input',
         message: "What is the intern's name?",
-        name: 'intern_name'
+        name: 'name'
     },
     {
         type: 'input',
         messgae: "What is the intern's employee ID?",
-        name: 'intern_ID'
+        name: 'id'
     },
     {
         type: 'input',
         message: "What is the intern's email address?",
-        name: 'intern_email'
+        name: 'email'
     },
     {
         type: 'input',
         message: "What is the intern's school?",
-        name: "intern_github"
+        name: "github"
     }
 ]
 async function init() {
-    var managerInfo = await inquirer.prompt(managerQuest)
-        .then(otherOpt)
-    console.log(managerInfo)
+    await inquirer.prompt(managerQuest)
+        .then(managerInput => {
+            const { name, id, email, officeNum } = managerInput
+            const manager = new Manager(name, id, email, officeNum)
+            myArray.push(manager)
+            console.log(manager)
+            console.log(myArray)
+        })
+    await otherOpt()
+
 }
 
 
@@ -86,15 +102,28 @@ async function otherOpt() {
     var myEmp = await inquirer.prompt(empChoices)
     console.log(myEmp.empOption)
     if (myEmp.empOption == 'Engineer') {
-        var engineerInfo = await inquirer.prompt(engineerQuest)
+        await inquirer.prompt(engineerQuest)
+            .then(EngineerInput => {
+                const { name, id, email, github } = EngineerInput
+                const engineer = new Engineer(name, id, email, github)
+                myArray.push(engineer)
+                console.log(myArray)
+
+            })
         otherOpt()
     } else if (myEmp.empOption == 'Intern') {
-        var internInfo = await inquirer.prompt(internQuest)
+        await inquirer.prompt(internQuest)
+            .then(internInput => {
+                const { name, id, email, school } = internInput
+                const intern = new Intern(name, id, email, school)
+                myArray.push(intern)
+                console.log(myArray)
+
+            })
         otherOpt()
     } else {
-        return engineerInfo, internInfo
+        return
     }
-    console.log(engineerInfo, internInfo)
 
 }
 
