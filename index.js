@@ -80,7 +80,7 @@ const internQuest = [
     {
         type: 'input',
         message: "What is the intern's school?",
-        name: "github"
+        name: "school"
     }
 ]
 async function init() {
