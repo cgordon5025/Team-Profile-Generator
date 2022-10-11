@@ -11,7 +11,12 @@ const inquirer = require('inquirer')
 const fs = require('fs');
 
 //empty array for profiles
+var managerArray = []
+var engineerArray = []
+var internArray = []
 var myArray = []
+var tempArray = []
+
 const empChoices = [
     {
         type: 'list',
@@ -96,49 +101,44 @@ async function init() {
             const { name, id, email, officeNum } = managerInput
             const manager = new Manager(name, id, email, officeNum)
             myArray.push(manager)
-            console.log(manager)
-            console.log(myArray)
+            // console.log(manager)
         })
     await otherOpt()
-    await console.log(myArray)
-    // await writeToFile("sampleStyle.css", `.main {
-    //     margin: 10px;
-    //     box-shadow: 10px 5px 5px black;
-    // }`), (err) =>
-    //         err ? console.error(err) : console.log('CSS Created!')
-    // await writeToFile("sample.html", makeHTML(myArray)), (err) =>
-    //     err ? console.error(err) : console.log('HTML Created!')
-
-
-
 }
-
 async function otherOpt() {
 
     var myEmp = await inquirer.prompt(empChoices)
     console.log(myEmp.empOption)
     if (myEmp.empOption == 'Engineer') {
         await inquirer.prompt(engineerQuest)
-            .then(EngineerInput => {
-                const { name, id, email, github } = EngineerInput
+            .then(engineerInput => {
+                const { name, id, email, github } = engineerInput
                 const engineer = new Engineer(name, id, email, github)
                 myArray.push(engineer)
-                console.log(myArray)
-
+                // console.log(engineerArray)
+                otherOpt()
             })
-        otherOpt()
+
     } else if (myEmp.empOption == 'Intern') {
         await inquirer.prompt(internQuest)
             .then(internInput => {
                 const { name, id, email, school } = internInput
                 const intern = new Intern(name, id, email, school)
                 myArray.push(intern)
-                console.log(myArray)
-
+                // console.log(internArray)
+                otherOpt()
             })
-        otherOpt()
-    } else {
+
+    } else if (myEmp.empOption == "No more employees to enter") {
         //go on to make the sheets and test?
+        // writeToFile("sampleStyle.css", `.main {
+        //         margin: 10px;
+        //         box-shadow: 10px 5px 5px black;
+        //     }`), (err) =>
+        //         err ? console.error(err) : console.log('CSS Created!')
+        // await writeToFile("sample.html", makeHTML(myArray)), (err) =>
+        //     err ? console.error(err) : console.log('HTML Created!')
+        makeHTML(myArray)
         return
     }
 
