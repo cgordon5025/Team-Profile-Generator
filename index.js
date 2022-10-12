@@ -1,6 +1,5 @@
 //html and css generator
 const makeHTML = require('./src/generateHTML')
-const makeCSS = require('./src/generateCSS')
 //profile classes
 const Manager = require('./lib/manager')
 const Engineer = require('./lib/engineer')
@@ -29,66 +28,183 @@ const managerQuest = [
     {
         type: 'input',
         message: "What is the manager's name?",
-        name: 'name'
+        name: 'name',
+        // validate: function (name) {
+        //     if (typeof name === 'string') {
+        //         return true
+        //     }
+        //     else {
+        //         console.log("please enter a valid name")
+        //         return false
+        //     }
+        // }
     },
     {
         type: 'input',
         messgae: "What is the manager's employee ID?",
-        name: 'id'
+        name: 'id',
+        // validate: function (id) {
+        //     if (typeof id === 'number') {
+        //         return true
+        //     }
+        //     else {
+        //         console.log("please enter a valid number")
+        //         return false
+        //     }
+        // }
     },
     {
         type: 'input',
         message: "What is the manager's email address?",
-        name: 'email'
+        name: 'email',
+        // validate: function (email) {
+
+        //     valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+
+        //     if (valid) {
+        //         console.log("Great job");
+        //         return true;
+        //     } else {
+        //         console.log(".  Please enter a valid email")
+        //         return false;
+        //     }
+        // }
     },
     {
         type: 'input',
         message: "What is the manager's office number?",
-        name: "officeNum"
+        name: "officeNum",
+        // validate: function (officeNum) {
+        //     if (typeof officeNum === 'number') {
+        //         return true
+        //     }
+        //     else {
+        //         console.log("please enter a valid number, no hyphens")
+        //         return false
+        //     }
+        // }
     }
 ]
 const engineerQuest = [
     {
         type: 'input',
         message: "What is the engineer's name?",
-        name: 'name'
+        name: 'name',
+        // validate: function (name) {
+        //     if (typeof name === 'string') {
+        //         return true
+        //     }
+        //     else {
+        //         console.log("please enter a valid name")
+        //         return false
+        //     }
+        // }
     },
     {
         type: 'input',
         messgae: "What is the engineer's employee ID?",
-        name: 'id'
+        name: 'id',
+        // validate: function (id) {
+        //     if (typeof id === 'number') {
+        //         return true
+        //     }
+        //     else {
+        //         console.log("please enter a valid number")
+        //         return false
+        //     }
+        // }
     },
     {
         type: 'input',
         message: "What is the engineer's email address?",
-        name: 'email'
+        name: 'email',
+        // validate: function (email) {
+
+        //     valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+
+        //     if (valid) {
+        //         console.log("Great job");
+        //         return true;
+        //     } else {
+        //         console.log(".  Please enter a valid email")
+        //         return false;
+        //     }
+        // }
     },
     {
         type: 'input',
         message: "What is the engineer's github?",
-        name: "github"
+        name: "github",
+        // validate: function (github) {
+        //     if (typeof github === 'string') {
+        //         return true
+        //     }
+        //     else {
+        //         console.log("please enter a valid github")
+        //         return false
+        //     }
+        // }
     }
 ]
 const internQuest = [
     {
         type: 'input',
         message: "What is the intern's name?",
-        name: 'name'
+        name: 'name',
+        // validate: function (name) {
+        //     if (typeof name === 'string') {
+        //         return true
+        //     }
+        //     else {
+        //         console.log("please enter a valid name")
+        //         return false
+        //     }
+        // }
     },
     {
         type: 'input',
         messgae: "What is the intern's employee ID?",
-        name: 'id'
+        name: 'id',
+        // validate: function (id) {
+        //     if (typeof id === 'number') {
+        //         return true
+        //     }
+        //     else {
+        //         console.log("please enter a valid number")
+        //         return false
+        //     }
+        // }
     },
     {
         type: 'input',
         message: "What is the intern's email address?",
-        name: 'email'
+        name: 'email',
+        // validate: function (email) {
+
+        //     valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+
+        //     if (valid) {
+        //         console.log("Great job");
+        //         return true;
+        //     } else {
+        //         console.log(".  Please enter a valid email")
+        //         return false;
+        //     }
+        // }
     },
     {
         type: 'input',
         message: "What is the intern's school?",
-        name: "school"
+        name: "school",
+        // validate: function (school) {
+        //     if (typeof school === 'string') {
+        //         return true
+        //     }
+        //     else {
+        //         console.log("please enter a valid school")
+        //         return false
+        //     }
+        // }
     }
 ]
 function writeToFile(fileName, data) {
