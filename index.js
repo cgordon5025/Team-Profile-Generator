@@ -130,15 +130,15 @@ async function otherOpt() {
             })
 
     } else if (myEmp.empOption == "No more employees to enter") {
-        //go on to make the sheets and test?
-        // writeToFile("sampleStyle.css", `.main {
-        //         margin: 10px;
-        //         box-shadow: 10px 5px 5px black;
-        //     }`), (err) =>
-        //         err ? console.error(err) : console.log('CSS Created!')
-        // await writeToFile("sample.html", makeHTML(myArray)), (err) =>
-        //     err ? console.error(err) : console.log('HTML Created!')
-        makeHTML(myArray)
+        // go on to make the sheets and test?
+        writeToFile("./dist/sampleStyle.css", `.main {
+                margin: 10px;
+                box-shadow: 10px 5px 5px black;
+            }`), (err) =>
+                err ? console.error(err) : console.log('CSS Created!')
+        await writeToFile("./dist/sample.html", makeHTML(myArray)), (err) =>
+            err ? console.error(err) : console.log('HTML Created!')
+        // makeHTML(myArray)
         return
     }
 
