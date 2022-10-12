@@ -10,11 +10,8 @@ const inquirer = require('inquirer')
 const fs = require('fs');
 
 //empty array for profiles
-var managerArray = []
-var engineerArray = []
-var internArray = []
+
 var myArray = []
-var tempArray = []
 
 const empChoices = [
     {
@@ -29,60 +26,56 @@ const managerQuest = [
         type: 'input',
         message: "What is the manager's name?",
         name: 'name',
-        // validate: function (name) {
-        //     if (typeof name === 'string') {
-        //         return true
-        //     }
-        //     else {
-        //         console.log("please enter a valid name")
-        //         return false
-        //     }
-        // }
+        validate: function (name) {
+            if (typeof name === 'string') {
+                return true
+            }
+            else {
+                console.log("please enter a valid name")
+                return false
+            }
+        }
     },
     {
         type: 'input',
         messgae: "What is the manager's employee ID?",
         name: 'id',
-        // validate: function (id) {
-        //     if (typeof id === 'number') {
-        //         return true
-        //     }
-        //     else {
-        //         console.log("please enter a valid number")
-        //         return false
-        //     }
-        // }
+        validate: function (id) {
+            if (!isNaN(id)) {
+                return true
+            }
+            else {
+                console.log("please enter a valid number")
+                return false
+            }
+        }
     },
     {
         type: 'input',
         message: "What is the manager's email address?",
         name: 'email',
-        // validate: function (email) {
-
-        //     valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
-
-        //     if (valid) {
-        //         console.log("Great job");
-        //         return true;
-        //     } else {
-        //         console.log(".  Please enter a valid email")
-        //         return false;
-        //     }
-        // }
+        validate: function (email) {
+            if (email.includes('@')) {
+                return true;
+            } else {
+                console.log(" Please enter a valid email")
+                return false;
+            }
+        }
     },
     {
         type: 'input',
         message: "What is the manager's office number?",
         name: "officeNum",
-        // validate: function (officeNum) {
-        //     if (typeof officeNum === 'number') {
-        //         return true
-        //     }
-        //     else {
-        //         console.log("please enter a valid number, no hyphens")
-        //         return false
-        //     }
-        // }
+        validate: function (officeNum) {
+            if (!isNaN(officeNum)) {
+                return true
+            }
+            else {
+                console.log("please enter a valid number")
+                return false
+            }
+        }
     }
 ]
 const engineerQuest = [
@@ -90,60 +83,56 @@ const engineerQuest = [
         type: 'input',
         message: "What is the engineer's name?",
         name: 'name',
-        // validate: function (name) {
-        //     if (typeof name === 'string') {
-        //         return true
-        //     }
-        //     else {
-        //         console.log("please enter a valid name")
-        //         return false
-        //     }
-        // }
+        validate: function (name) {
+            if (typeof name === 'string') {
+                return true
+            }
+            else {
+                console.log("please enter a valid name")
+                return false
+            }
+        }
     },
     {
         type: 'input',
         messgae: "What is the engineer's employee ID?",
         name: 'id',
-        // validate: function (id) {
-        //     if (typeof id === 'number') {
-        //         return true
-        //     }
-        //     else {
-        //         console.log("please enter a valid number")
-        //         return false
-        //     }
-        // }
+        validate: function (id) {
+            if (!isNaN(id)) {
+                return true
+            }
+            else {
+                console.log("please enter a valid number")
+                return false
+            }
+        }
     },
     {
         type: 'input',
         message: "What is the engineer's email address?",
         name: 'email',
-        // validate: function (email) {
-
-        //     valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
-
-        //     if (valid) {
-        //         console.log("Great job");
-        //         return true;
-        //     } else {
-        //         console.log(".  Please enter a valid email")
-        //         return false;
-        //     }
-        // }
+        validate: function (email) {
+            if (email.includes('@')) {
+                return true;
+            } else {
+                console.log(" Please enter a valid email")
+                return false;
+            }
+        }
     },
     {
         type: 'input',
         message: "What is the engineer's github?",
         name: "github",
-        // validate: function (github) {
-        //     if (typeof github === 'string') {
-        //         return true
-        //     }
-        //     else {
-        //         console.log("please enter a valid github")
-        //         return false
-        //     }
-        // }
+        validate: function (github) {
+            if (typeof github === 'string') {
+                return true
+            }
+            else {
+                console.log("please enter a valid github")
+                return false
+            }
+        }
     }
 ]
 const internQuest = [
@@ -151,60 +140,56 @@ const internQuest = [
         type: 'input',
         message: "What is the intern's name?",
         name: 'name',
-        // validate: function (name) {
-        //     if (typeof name === 'string') {
-        //         return true
-        //     }
-        //     else {
-        //         console.log("please enter a valid name")
-        //         return false
-        //     }
-        // }
+        validate: function (name) {
+            if (typeof name === 'string') {
+                return true
+            }
+            else {
+                console.log("please enter a valid name")
+                return false
+            }
+        }
     },
     {
         type: 'input',
         messgae: "What is the intern's employee ID?",
         name: 'id',
-        // validate: function (id) {
-        //     if (typeof id === 'number') {
-        //         return true
-        //     }
-        //     else {
-        //         console.log("please enter a valid number")
-        //         return false
-        //     }
-        // }
+        validate: function (id) {
+            if (!isNaN(id)) {
+                return true
+            }
+            else {
+                console.log("please enter a valid number")
+                return false
+            }
+        }
     },
     {
         type: 'input',
         message: "What is the intern's email address?",
         name: 'email',
-        // validate: function (email) {
-
-        //     valid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
-
-        //     if (valid) {
-        //         console.log("Great job");
-        //         return true;
-        //     } else {
-        //         console.log(".  Please enter a valid email")
-        //         return false;
-        //     }
-        // }
+        validate: function (email) {
+            if (email.includes('@')) {
+                return true;
+            } else {
+                console.log(" Please enter a valid email")
+                return false;
+            }
+        }
     },
     {
         type: 'input',
         message: "What is the intern's school?",
         name: "school",
-        // validate: function (school) {
-        //     if (typeof school === 'string') {
-        //         return true
-        //     }
-        //     else {
-        //         console.log("please enter a valid school")
-        //         return false
-        //     }
-        // }
+        validate: function (school) {
+            if (typeof school === 'string') {
+                return true
+            }
+            else {
+                console.log("please enter a valid school")
+                return false
+            }
+        }
     }
 ]
 function writeToFile(fileName, data) {
@@ -261,6 +246,3 @@ async function otherOpt() {
 }
 
 init()
-
-//i've got the object manager/engineer/intern with their name/id/email etc in it
-//now how can i iterate for that
