@@ -1,10 +1,13 @@
+//arrays to hold the total engineers and interns
+var engineerArray = []
+var internArray = []
 var managerCard;
 //first variable is for a single card, the second is for multiple
 var engineerCard;
-var engineerCards;
+var engineerCards = []
 //first is for a single card, the second is for multiple
 var internCard;
-var internCards;
+var internCards = []
 function makeCards(data) {
     console.log(data)
     // console.log(data.getRole())
@@ -28,51 +31,53 @@ function makeCards(data) {
     </div>
 </div>
 </div>`
-            console.log(managerCard)
         } else if (data[i].getRole() === "Engineer") {
+            engineerArray.push(data[i])
             console.log("Making Engineer Cards")
             engineerCard = `<div class="main card" style="width: 20rem;">
             <div class="card-header bg-primary">
-                <h5 class="card-title text-white">Jung</h5>
+                <h5 class="card-title text-white">${data[i].name}</h5>
                 <h6 class="card-subtitle mb-2 text-white"><span class="fas fa-glasses"></span>Engineer</h6>
             </div>
             <div class="card-body">
                 <div class="card" style="width: 16rem;">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">ID:</li>
-                        <li class="list-group-item">Email:</li>
-                        <li class="list-group-item"> Github</li>
+                        <li class="list-group-item">ID: ${data[i].id}</li>
+                        <li class="list-group-item">Email: ${data[i].email}</li>
+                        <li class="list-group-item"> Github: ${data[i].github}</li>
                     </ul>
                 </div>
             </div>
         </div>`
+            engineerCards.push(engineerCard)
+
         } else if (data[i].getRole() === "Intern") {
+            internArray.push(data[i])
             console.log("Making Intern Cards")
             internCard = `<div class="main card" style="width: 20rem;">
-            <div class="card-header bg-primary">
-                <h5 class="card-title text-white">MMMMMMMME</h5>
-                <h6 class="card-subtitle mb-2 text-white"><span class="fas fa-user-graduate"></span>Intern</h6>
+        <div class="card-header bg-primary">
+            <h5 class="card-title text-white">${data[i].name}</h5>
+            <h6 class="card-subtitle mb-2 text-white"><span class="fas fa-user-graduate"></span>Intern</h6>
+        </div>
+        <div class="card-body">
+            <div class="card" style="width: 16rem;">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">ID: ${data[i].id}</li>
+                    <li class="list-group-item">Email: ${data[i].email}</li>
+                    <li class="list-group-item">School: ${data[i].school}</li>
+                </ul>
             </div>
-            <div class="card-body">
-                <div class="card" style="width: 16rem;">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">ID:</li>
-                        <li class="list-group-item">Email:</li>
-                        <li class="list-group-item">School</li>
-                    </ul>
-                </div>
-            </div>
-        </div>`
+        </div>
+    </div>`
+            internCards.push(internCard)
+
         }
-
-        //build out other and do the cards
-
-
     }
+
 }
 function generateHTML(data) {
     makeCards(data)
-
+    const myHTML =
         `<!DOCTYPE html>
 <html lang="en">
 
@@ -97,26 +102,15 @@ function generateHTML(data) {
     </div>
     <div class="row justify-content-center" id="employees">
         ${managerCard}
-        ${}
-        ${}
-        <div class="main card" style="width: 20rem;">
-            <div class="card-header bg-primary">
-                <h5 class="card-title text-white">MMMMMMMME</h5>
-                <h6 class="card-subtitle mb-2 text-white"><span class="fas fa-user-graduate"></span>Intern</h6>
-            </div>
-            <div class="card-body">
-                <div class="card" style="width: 16rem;">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">ID:</li>
-                        <li class="list-group-item">Email:</li>
-                        <li class="list-group-item">School</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+        ${engineerCards}
+        ${internCards}
     </div>
 </body>
 
 </html>`
+        ;
+    console.log(myHTML)
+    return myHTML
 }
+
 module.exports = generateHTML;
