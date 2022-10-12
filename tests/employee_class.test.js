@@ -1,10 +1,11 @@
-const Employee = require('../lib/employee_class')
+const Employee = require('../lib/employee_class');
 
 describe('Employee', () => {
     describe("getName", () => {
         it("should return a string", () => {
             const str = "John"
-            expect(str).toBe(true)
+            const result = new Employee.getName(str)
+            expect(result).toBe(true)
         });
         it("should not return a string", () => {
             const str = 1
@@ -26,21 +27,21 @@ describe('Employee', () => {
         it("should return a string with a email address", () => {
             // const expected = expect.stringContaining("@")
             const str = "john@gmail"
-            expect(str).toBe(true)
+            expect(str).toEqual(true)
         });
         it("should not return a string with a email address", () => {
             const str = "john"
-            expect(str).toBe(false)
+            expect(str).toEqual(false)
         });
     });
     describe("getRole", () => {
         it("should return a string", () => {
             const str = "john"
-            expect(str).toBe(true)
+            expect(str).toEqual(true)
         });
         it("should not return a string", () => {
             const str = 1
-            expect(str).toBe(false)
+            expect(str).toEqual(false)
         })
     });
 });

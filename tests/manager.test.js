@@ -9,11 +9,11 @@ describe("Manager", () => {
         });
         it("should return false if it is not a 10 digit number", () => {
             const num = 12345
-            expect(num).toBe(false)
+            expect(num).toEqual(false)
         });
         it("should return false if it is not a number", () => {
             const num = "Hello"
-            expect(num).toBe(false)
+            expect(num).toEqual(false)
         })
     })
 })
